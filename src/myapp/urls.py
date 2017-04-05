@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^api/', include("myapp.apps.hr.urls_rest")),
     url(r'^api/', include("myapp.apps.project.urls_rest")),
 	url(r'^api/', include('rest_framework.urls',namespace='rest_framework')),
-	url(r'^docs/', include('rest_framework_docs.urls')),
+	#url(r'^docs/', include('rest_framework_docs.urls')),
 	url(r'^docs2/', include_docs_urls(title='My API title')),
 	url(r'^docs3/', schema_view),
 	
