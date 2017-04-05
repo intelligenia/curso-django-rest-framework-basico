@@ -167,7 +167,6 @@ INSTALLED_APPS = (
 	'myapp.apps.hr',
 	'myapp.apps.project',
 	'rest_framework',
-	'rest_framework_docs',
 	'rest_framework_swagger',
 	'location',
 )
