@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d
+END
+01update-virtualenv
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/01update-virtualenv
+END
+41grunt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/41grunt
+END
+35collectstatic
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/35collectstatic
+END
+50sorl-thumbnail
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/50sorl-thumbnail
+END
+60locales
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/60locales
+END
+10custom-managepy
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/proyectos/!svn/ver/2839/bin/make-distfiles/intelligenia.install/post-install.d/10custom-managepy
+END

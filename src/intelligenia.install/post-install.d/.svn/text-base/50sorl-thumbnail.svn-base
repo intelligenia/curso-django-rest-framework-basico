@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+## en la variable $pythonpath se define la ruta a la raíz de la
+## exportación. En dicha raíz donde debe estar el módulo python
+## "intelligenia_local" con el fichero "intelligenia_settings_local.py"
+## Este fichero debe contener al menos las credenciales para el acceso
+## a la base de datos en el sistema en explotación definidas en las
+## siguientes variables:
+##
+##  DBNAME
+##  DBUSER
+##  DBPASSWORD
+##  DBHOST
+##  DBPORT
+##
+##  MEDIA       # Ruta absoluta al directorio "media" de la instalación
+##  BASE_URI    # Prefijo para la URI para los estáticos servidos
+##  DEBUG       # True | False para mensajes de depuración
+
+## Este script espera los siguientes argumentos (desde run-parts)
+##     $1  ruta completa de exportación en disco
+##     $2  nº de versión exportada
+##     $3  valor de la variable de entorno RUN_PARTS_ARG definida en export.conf
+
+EXPORT_TARGET_DIR=$1 # directorio con el raíz del proyecto exportado
+EXPORT_REVISION=$2   # versión que se está exportando
+RUN_PARTS_ARG=$3     # contiene la variante de la instalación con la personalización de plantillas y estáticos
+DEPLOYMENT_ROOT=`realpath $EXPORT_TARGET_DIR/../..`  # ruta al directorio raíz para los despliegues de este site
+
+pythonpath=$DEPLOYMENT_ROOT
+cmd="python $EXPORT_TARGET_DIR/manage.py thumbnail --pythonpath=$pythonpath --verbosity=3 cleanup"
+echo $cmd
+$cmd

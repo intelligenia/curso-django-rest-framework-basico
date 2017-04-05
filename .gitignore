@@ -1,0 +1,15 @@
+.directory
+.idea
+.DS_Store
+.idea
+*~
+*.swp
+*.kate-swp
+*.bak
+*.pyc
+venv/
+server/venv
+server/src/media
+server/src/intelligenia_local
+server/shell.sh
+client/bin

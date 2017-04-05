@@ -1,0 +1,16 @@
+#!/bin/bash
+# Compilación de los archivos .po en los .mo con los mensajes en cada uno de los idiomas.
+
+EXPORT_TARGET_DIR=$1 # directorio con el raíz del proyecto exportado
+EXPORT_REVISION=$2   # versión que se está exportando
+RUN_PARTS_ARG=$3     # contiene la variante de la instalación con la personalización de plantillas y estáticos
+DEPLOYMENT_ROOT=`realpath $EXPORT_TARGET_DIR/../..`  # ruta al directorio raíz para los despliegues de este site
+
+cmd="cd $EXPORT_TARGET_DIR/tickets"
+echo $cmd
+$cmd
+
+cmd="$DEPLOYMENT_ROOT/venv/bin/django-admin.py compilemessages"
+echo $cmd
+$cmd
+

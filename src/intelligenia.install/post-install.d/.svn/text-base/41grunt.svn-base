@@ -1,0 +1,81 @@
+#!/bin/bash
+
+## Ejecuta las tareas de minificación y compactación definidas en el gruntfile
+## Utiliza Grunt 0.4
+##
+## Requiere que esté instalado de forma global en el sistema el comando "grunt"
+## del paquete 'grunt-cli' y que exista el fichero package.json con las
+## dependencias utilizadas para el despliegue.
+##
+## Este script espera los siguientes argumentos (desde run-parts)
+##     $1  ruta completa de exportación en disco
+##     $2  nº de versión exportada
+##     $3  valor de la variable de entorno RUN_PARTS_ARG definida en export.conf
+
+EXPORT_FULL_DIR=$1
+EXPORT_REVISION=$2
+RUN_PARTS_ARG=$3  # contiene la variante de la instalación con la personalización de plantillas y estáticos
+
+which grunt || exit 0
+
+## Comando 'npm' con opciones
+NPM="npm --cache=./.npm --tmp=/tmp"
+
+if [ "$EXPORT_FULL_DIR" ]; then
+	base="$EXPORT_FULL_DIR"
+else
+	base=`realpath ./../..`
+fi
+
+## El fichero a ejecutar será el de la variante de instalación local. Si no se especifica la variante
+## se ejecutará el fichero Gruntfile-default.js
+
+if [ "$RUN_PARTS_ARG" ]; then
+	variante="$RUN_PARTS_ARG"
+else
+	variante="default"
+fi
+
+gruntdir="$base"/intelligenia.install/grunt/
+gruntfile="$gruntdir"/Gruntfile-"$variante".js
+package="$gruntdir"/package.json
+readme="$gruntdir"/README.md
+
+if ! [ -f "$gruntfile" ] ; then
+	echo "No se ha encontrado '$gruntfile'. Saltando este paso"
+	exit 0
+fi
+
+if ! [ -f "$package" ] || ! [ -f "$readme" ] ; then
+	echo "no se ha encontrado $package o $readme. Saliendo."
+	exit 1
+fi
+
+## Enlazar package.json y README.md al directorio raíz del despliegue
+echo "Enlazando package.json y README.md al directorio actual"
+rm -f package.json README.md
+ln -s $package $readme .
+
+## Actualizar módulos nodejs necesarios para el despliegue
+echo "Actualizando paquetes NodeJS necesarios para el despliegue"
+$NPM install
+status=$?
+
+if [ $status -ne 0 ] ; then
+	echo "Error en la ejecución de NPM. Saliendo."
+	exit 1
+fi
+
+## Eliminar package.json y README.md
+echo "Eliminando enlaces package.json y README.md"
+rm -f package.json README.md
+
+if ! [ -f "$gruntfile" ] ; then
+	echo "Gruntfile no encontrado: $gruntfile. Saliendo."
+	exit 1
+fi
+
+## Invocar 'grunt'
+ln -s `realpath node_modules` "$gruntdir"
+echo "Invocando grunt --gruntfile $gruntfile"
+grunt --gruntfile "$gruntfile"
