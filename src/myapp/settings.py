@@ -4,9 +4,6 @@
 
 
 import os
-import datetime
-
-import myapp.apps.core
 
 import intelligenia_settings
 from intelligenia_util import deploy 
@@ -116,7 +113,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'asd-f*sdaf*s-adf*-s34tewrg5wt--dfsgdsf~€€dfg'
+SECRET_KEY = 'dfgh7873h3nnsnsxjxi9xij32n2309s9ksjaj1..22'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
