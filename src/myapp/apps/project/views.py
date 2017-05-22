@@ -50,13 +50,15 @@ class ProjectView(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
 	queryset = Project.objects.all()
 	serializer_class = ProjectSerializer
-	permission_classes = (IsMemberOrReadOnly,)
+	#permission_classes = (IsMemberOrReadOnly,)
 	
 	def get_queryset(self):
-		if self.request.user.is_staff:
-			return Project.objects.all()
-		else:
-			return Project.objects.filter(members__user=self.request.user)
+		return Project.objects.all()
+
+		# if self.request.user.is_staff:
+		# 	return Project.objects.all()
+		# else:
+		# 	return Project.objects.filter(members__user=self.request.user)
 	
 class FlowStepView(mixins.CreateModelMixin, 
                    mixins.RetrieveModelMixin, 
@@ -66,7 +68,7 @@ class FlowStepView(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
 	queryset = FlowStep.objects.all()
 	serializer_class = FlowStepSerializer
-	permission_classes = (IsMemberOrReadOnly,)
+	#permission_classes = (IsMemberOrReadOnly,)
 	
 	
 class TaskView(mixins.CreateModelMixin, 
@@ -77,7 +79,7 @@ class TaskView(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
 	queryset = Task.objects.all()
 	serializer_class = TaskSerializer
-	permission_classes = (IsMemberOrReadOnly,)
+	#permission_classes = (IsMemberOrReadOnly,)
 	
 	
 class CommentView(mixins.CreateModelMixin, 
@@ -88,7 +90,7 @@ class CommentView(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
 	queryset = Comment.objects.all()
 	serializer_class = CommentSerializer
-	permission_classes = (IsMemberOrReadOnly,)
+	#permission_classes = (IsMemberOrReadOnly,)
 	
 	
 	

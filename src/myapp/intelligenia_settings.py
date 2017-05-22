@@ -56,9 +56,9 @@ ALLOWED_HOSTS = [ DOMAIN ]
 SITE_ID = 1
 
 # Parámentros de conexión a la BD
-DBNAME = "apirest"
-DBUSER = "root"
-DBPASSWORD = "intelligenia"
+DBNAME = "curso"
+DBUSER = "curso"
+DBPASSWORD = "curso"
 DBHOST = ""
 DBPORT = ""
 
