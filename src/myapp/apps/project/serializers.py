@@ -26,6 +26,7 @@ class TaskSerializer(DynamicFieldModelSerializer):
 	class Meta:
 		model = Task
 		fields = (	'id',
+				  	'creation_datetime',
 					'flow_step',
 					'name',
 					'description',
